@@ -2,9 +2,9 @@ from src.EmotionDetection import EmotionDetection
 
 class Job:
 
-    def __init__(self):
+    def __init__(self, connection):
 
-        self.detector = EmotionDetection()
+        self.detector = EmotionDetection(connection)
     
     def start_detection(self):
 

@@ -1,19 +1,19 @@
-import sqlite3 as sqllite
+import json
 
 from datetime import date
 
 class DatabaseMethods:
 
-    def __init__(self):
+    def __init__(self, connection):
 
-        self.database = sqllite.connect('face_emotion_detection.db')
+        self.database = connection
 
 
     def register_pending_analyse(self, user_email, file_name):
 
         date_today = date.today()
         
-        self.database.execute('INSERT INTO pending_analyses (file_name, user_email, date_register) VALUES ('+ file_name +', '+ user_email +', '+ date_today +') ')
+        self.database.execute('INSERT INTO pending_analyses (file_name, user_email, date_register) VALUES ("'+ file_name +'", "'+ user_email +'", "'+ str(date_today) +'") ')
         print('Analyse register sucessful.')
 
     
@@ -25,6 +25,9 @@ class DatabaseMethods:
     
     def get_pending_analyse(self):
 
-        pending_analyse = self.database.execute('SELECT TOP 1 * FROM pending_analyses')
-        return pending_analyse
+        pending_analyse = self.database.execute('SELECT * FROM pending_analyses LIMIT 1')
+
+        analyse = json.dumps(pending_analyse.fetchall())
+
+        return analyse
     
