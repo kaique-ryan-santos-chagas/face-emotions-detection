@@ -1,0 +1,5 @@
+videos/
+
+face_emotion_detection.db
+
+src/__pycache__
