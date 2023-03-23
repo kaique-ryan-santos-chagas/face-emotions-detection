@@ -1,4 +1,3 @@
-import json
 
 from datetime import date
 
@@ -19,7 +18,8 @@ class DatabaseMethods:
     
     def delete_pending_analyse(self, pending_analyse_id):
 
-        self.database.execute('DELETE FROM pending_analyses WHERE id = ' + pending_analyse_id)
+        self.database.execute('DELETE FROM pending_analyses WHERE id = ' + str(pending_analyse_id))
+        self.database.commit()
         print('Analyse removed sucessful.')
 
     
@@ -27,7 +27,7 @@ class DatabaseMethods:
 
         pending_analyse = self.database.execute('SELECT * FROM pending_analyses LIMIT 1')
 
-        analyse = json.dumps(pending_analyse.fetchall())
+        analyse = pending_analyse.fetchall()
 
         return analyse
     

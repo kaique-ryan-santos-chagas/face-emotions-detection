@@ -6,7 +6,6 @@ import sqlite3 as database
 
 # start job listen in second thread.
 
-
 def run_scheduler():
 
     connection = database.connect('face_emotion_detection.db')
