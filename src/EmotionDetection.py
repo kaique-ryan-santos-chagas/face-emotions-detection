@@ -51,7 +51,21 @@ class EmotionDetection:
 
         video_data = json.loads(data)
 
-        print(video_data['filename'])
+        zip_files_path = os.path.join(os.getcwd(), 'zipfiles')
+        video_files_path = os.path.join(os.getcwd(), 'videos')
+
+        for filename in os.listdir(zip_files_path):
+
+            filename_splited, extension = os.path.splitext(filename)
+
+            if filename == video_data['filename'] + extension:
+
+                filepath = os.path.join(zip_files_path, filename)
+
+                if os.path.isfile(filepath):
+                    with zipfile.ZipFile(filepath, 'r') as zip_ref:
+                        zip_ref.extractall(video_files_path)
+                
 
 
 
