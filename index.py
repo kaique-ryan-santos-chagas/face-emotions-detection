@@ -1,23 +1,20 @@
-from flask import Flask, jsonify
+from flask import Flask, request, jsonify
 from src.Job import Job 
+from src.EmotionDetection import EmotionDetection
 
 import threading
 import sqlite3 as database
+import os
 
 # start job listen in second thread.
 
-def run_scheduler():
+connection = database.connect('face_emotion_detection.db', check_same_thread=False)
+emotionDetection = EmotionDetection(connection)
 
-    connection = database.connect('face_emotion_detection.db')
+job = Job(connection)
 
-    job = Job(connection)
-
-    while True:
-        job.start_detection()
-
-job_thread = threading.Thread(target=run_scheduler)
+job_thread = threading.Thread(target=job.run_scheduler)
 job_thread.start()
-
 
 # start server in main thread. 
 
@@ -26,14 +23,22 @@ app = Flask(__name__)
 @app.route('/')
 
 def welcome():
+
     return 'Welcome to Face Emotion Detection to audiovisual productions!'
 
 
-@app.route('/send/video')
+@app.route('/send/video', methods=['POST'])
+    
+def store_video():
 
-def send_video():
+    analyse_data = request.form['json_data']
+    video_file_zip = request.files['file']
+    zip_folder_path = os.path.join(os.getcwd(), 'zipfiles')
+    video_path = os.path.join(zip_folder_path, video_file_zip.filename)
+    video_file_zip.save(video_path)
+    emotionDetection.store_pending_analyse(analyse_data)
 
-    return jsonify('name: Kaique Ryan')
+    return jsonify({'message': "Video stored succesfull."})
 
 
 if __name__ == '__main__':

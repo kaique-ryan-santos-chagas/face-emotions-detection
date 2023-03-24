@@ -3,6 +3,8 @@ from fer import FER, Video
 from src.database.DatabaseMethods import DatabaseMethods
 
 import os
+import zipfile
+import json
 
 class EmotionDetection:
 
@@ -16,11 +18,7 @@ class EmotionDetection:
 
         pending_analyse = self.database.get_pending_analyse()
 
-        if not pending_analyse:
-
-            print('No review pending.')
-        
-        else:
+        if pending_analyse:
 
             analyse_id = pending_analyse[0][0] 
             analyse_filename = pending_analyse[0][1]
@@ -49,9 +47,11 @@ class EmotionDetection:
             self.database.delete_pending_analyse(analyse_id)
 
     
-    def store_pending_analyse(self):
+    def store_pending_analyse(self, data):
 
-        print('Hello World!')
+        video_data = json.loads(data)
+
+        print(video_data['filename'])
 
 
 
