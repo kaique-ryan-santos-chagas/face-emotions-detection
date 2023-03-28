@@ -65,6 +65,9 @@ class EmotionDetection:
                 if os.path.isfile(filepath):
                     with zipfile.ZipFile(filepath, 'r') as zip_ref:
                         zip_ref.extractall(video_files_path)
+
+
+        self.database.register_pending_analyse(video_data)
                 
 
 

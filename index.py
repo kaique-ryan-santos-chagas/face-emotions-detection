@@ -38,7 +38,7 @@ def store_video():
     video_file_zip.save(video_path)
     emotionDetection.store_pending_analyse(analyse_data)
 
-    return jsonify({'message': "Video stored succesfull."})
+    return jsonify({'message': 'Video stored succesfull.'})
 
 
 if __name__ == '__main__':

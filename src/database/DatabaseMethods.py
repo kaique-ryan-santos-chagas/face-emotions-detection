@@ -8,10 +8,15 @@ class DatabaseMethods:
         self.database = connection
 
 
-    def register_pending_analyse(self, user_email, file_name):
+    def register_pending_analyse(self, video_data):
 
+        filename = video_data['filename']
+        user_email = video_data['user_email']
+        age_group = video_data['age_group']
+        gender = video_data['gender']
         date_today = date.today()
-        self.database.execute('INSERT INTO pending_analyses (file_name, user_email, date_register) VALUES ("'+ file_name +'", "'+ user_email +'", "'+ str(date_today) +'") ')
+
+        self.database.execute('INSERT INTO pending_analyses (file_name, user_email, date_register) VALUES ("'+ filename +'", "'+ user_email +'", "'+ str(date_today) +', '+ age_group +', '+ gender +' ") ')
         
         return 'Analyse stored successfull.'
 
