@@ -35,6 +35,13 @@ def store_video():
     video_file_zip = request.files['file']
     zip_folder_path = os.path.join(os.getcwd(), 'zipfiles')
     video_path = os.path.join(zip_folder_path, video_file_zip.filename)
+
+    filename, extension = os.path.splitext(video_file_zip.filename)
+
+    if not extension == '.zip':
+
+        return jsonify({'message': 'Error: this file is in incorrect format.'})
+
     video_file_zip.save(video_path)
     emotionDetection.store_pending_analyse(analyse_data)
 
