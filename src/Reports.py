@@ -1,6 +1,10 @@
 import os 
 import smtplib
 
+from jinja2 import Environment, FileSystemLoader
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 class Reports: 
 
     def __init__(self):
@@ -16,16 +20,25 @@ class Reports:
 
         print('Sending e-mail...')
 
+        templates_path = os.path.join(os.getcwd(), 'src/templates')
+
+        env = Environment(loader=FileSystemLoader(templates_path.replace('/', '\\')))
+
+        template = env.get_template('report-email.html')
+
         smtp_server = smtplib.SMTP('smtp.gmail.com', 587)
         smtp_server.starttls()
-        smtp_server.login('kaique.github@gmail.com', 'mvhmmdgrwcctbdwx')
+        smtp_server.login('visualvibe.ai@gmail.com', 'zeticiylqnvkihgo') 
 
-        from_addr = 'kaique.github@gmail.com'
-        to_addr = 'kaique.chagas@globalhitss.com.br'
-        subject = 'Your report is ready.'
-        body = 'Visual Vibe'
-        msg = f'Subject: {subject}\n\n{body}'
+        html = template.render()
 
-        smtp_server.sendmail(from_addr, to_addr, msg)
+        message = MIMEMultipart()
+
+        message['From'] = 'sender@example.com'
+        message['To'] = user_email
+        message['Subject'] = 'Your report is ready!'
+        message.attach(MIMEText(html, 'html'))
+
+        smtp_server.sendmail(message['From'], message['To'], message.as_string())
 
         smtp_server.quit()
