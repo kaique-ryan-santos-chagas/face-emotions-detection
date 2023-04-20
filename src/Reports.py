@@ -4,12 +4,15 @@ import smtplib
 from jinja2 import Environment, FileSystemLoader
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from dotenv import load_dotenv
 
 class Reports: 
 
     def __init__(self):
 
-        self.message = 'Hello World'
+        self.message = 'Emotions report.'
+
+        load_dotenv()
 
     def generate_report(self):
 
@@ -28,13 +31,14 @@ class Reports:
 
         smtp_server = smtplib.SMTP('smtp.gmail.com', 587)
         smtp_server.starttls()
-        smtp_server.login('visualvibe.ai@gmail.com', 'zeticiylqnvkihgo') 
+
+        smtp_server.login('artvibe.ai@gmail.com', os.getenv('EMAIL_PASSWORD'))
 
         html = template.render()
 
         message = MIMEMultipart()
 
-        message['From'] = 'sender@example.com'
+        message['From'] = 'artvibe.ai@gmail.com'
         message['To'] = user_email
         message['Subject'] = 'Your report is ready!'
         message.attach(MIMEText(html, 'html'))
