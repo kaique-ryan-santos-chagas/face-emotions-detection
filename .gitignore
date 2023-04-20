@@ -6,3 +6,5 @@ src/__pycache__
 src/database/__pycache__
 
 zipfiles/
+
+.env
