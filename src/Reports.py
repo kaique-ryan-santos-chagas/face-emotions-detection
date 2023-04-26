@@ -8,9 +8,9 @@ from dotenv import load_dotenv
 
 class Reports: 
 
-    def __init__(self):
+    def __init__(self, user_email):
 
-        self.message = 'Emotions report.'
+        self.usermail = user_email
 
         load_dotenv()
 
@@ -19,7 +19,7 @@ class Reports:
         print('Generating report...')
 
 
-    def send_email(self, user_email):
+    def send_email(self):
 
         print('Sending e-mail...')
 
@@ -39,7 +39,7 @@ class Reports:
         message = MIMEMultipart()
 
         message['From'] = 'artvibe.ai@gmail.com'
-        message['To'] = user_email
+        message['To'] = self.usermail
         message['Subject'] = 'Your report is ready!'
         message.attach(MIMEText(html, 'html'))
 
