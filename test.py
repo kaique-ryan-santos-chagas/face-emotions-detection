@@ -1,5 +1,7 @@
-from src.Reports import Reports 
+from src.Reports import Reports
 
-report = Reports('kaique.ryan.10101@gmail.com')
+reports = Reports()
 
-report.send_email()
+reports.send_email('kaique.chagas@globalhitss.com.br')
+
+
