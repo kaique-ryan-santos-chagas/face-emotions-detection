@@ -36,3 +36,9 @@ class DatabaseMethods:
 
         return analyse
     
+    def get_user_data(self, user_email):
+
+        user_data = self.database.execute("SELECT * FROM users WHERE user_email = '" + user_email + "'")
+
+        return user_data.fetchall()
+    
