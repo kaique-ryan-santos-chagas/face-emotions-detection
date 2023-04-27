@@ -1,6 +1,6 @@
 from src.Reports import Reports
 
-reports = Reports()
+reports = Reports('kaique.chagas@globalhitss.com.br')
 
-reports.send_email('kaique.chagas@globalhitss.com.br')
+reports.send_email()
 
