@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from src.Job import Job 
 from src.EmotionDetection import EmotionDetection
+from src.Users import User
 
 import threading
 import sqlite3 as database
@@ -19,6 +20,9 @@ job_thread.start()
 # start server in main thread. 
 
 app = Flask(__name__)
+
+
+# Application routes 
 
 @app.route('/')
 
@@ -47,6 +51,21 @@ def store_video():
 
     return jsonify({'message': 'Video stored succesfull.'})
 
+
+@app.route('/user/register', methods=['POST'])
+
+def register_user():
+
+    user_data = request.json
+
+    user = User(user_data)
+    # result = user.register_user()
+
+    return jsonify('result')
+
+
+
+# Running the web server Thread.   
 
 if __name__ == '__main__':
     app.run()

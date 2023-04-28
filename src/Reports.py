@@ -13,8 +13,7 @@ from dotenv import load_dotenv
 class Reports: 
 
     def __init__(self, user_email):
-
-
+        
         self.useremail = user_email
         self.message = 'Emotions report.'
         self.template = ''
@@ -51,17 +50,24 @@ class Reports:
 
         user_data = query.get_user_data(self.useremail)
 
-        username = user_data[0][1]
-
-        html = self.template.render(username=username)
-
-        self.message['From'] = 'artvibe.ai@gmail.com'
-        self.message['To'] = self.useremail
-        self.message['Subject'] = 'Your report is ready!'
-        self.message.attach(logo_image)
-        self.message.attach(MIMEText(html, 'html'))
+        if not user_data:
+            print('User not found.')
         
-        print('Report is ready.')
+        else:
+
+            username = user_data[0][1]
+
+            html = self.template.render(username=username)
+
+            self.message['From'] = 'artvibe.ai@gmail.com'
+            self.message['To'] = self.useremail
+            self.message['Subject'] = 'Your report is ready!'
+            self.message.attach(logo_image)
+            self.message.attach(MIMEText(html, 'html'))
+            
+            print('Report is ready.')
+            self.send_email()
+
 
     def send_email(self):
 

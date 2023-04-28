@@ -5,17 +5,18 @@ from src.database.DatabaseMethods import DatabaseMethods
 
 class User:
 
-    def __init__(self, user_data):
+    def __init__(self, user_data_json):
 
-        self.username = ''
-        self.useremail = ''
-        self.connection = database.connect('face_emotion_detection.db')
+        data = json.loads(user_data_json)
+        print(data)
+
+        # self.user_data = user_data
+        # self.connection = database.connect('face_emotion_detection.db')
         
 
     def register_user(self):
 
         query = DatabaseMethods(self.connection)
-        user_data = json.dumps({ 'username': self.username, 'useremail': self.useremail })
-        result = query.register_user(user_data)
+        result = query.register_user(self.user_data)
 
         return result
