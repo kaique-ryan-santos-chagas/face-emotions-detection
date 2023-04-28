@@ -14,15 +14,17 @@ class Reports:
 
     def __init__(self, user_email):
 
+
+        self.useremail = user_email
         self.message = 'Emotions report.'
         self.template = ''
         self.connection = database.connect('face_emotion_detection.db')
 
         load_dotenv()
 
-        self.generate_report(user_email)
+        self.generate_report()
 
-    def generate_report(self, user_email):
+    def generate_report(self):
 
         print('Generating report...')
 
@@ -47,18 +49,19 @@ class Reports:
 
         query = db(self.connection)
 
-        user_data = query.get_user_data(user_email)
+        user_data = query.get_user_data(self.useremail)
 
         username = user_data[0][1]
 
         html = self.template.render(username=username)
 
         self.message['From'] = 'artvibe.ai@gmail.com'
-        self.message['To'] = user_email
+        self.message['To'] = self.useremail
         self.message['Subject'] = 'Your report is ready!'
         self.message.attach(logo_image)
         self.message.attach(MIMEText(html, 'html'))
-
+        
+        print('Report is ready.')
 
     def send_email(self):
 
@@ -69,4 +72,6 @@ class Reports:
         smtp_server.login('artvibe.ai@gmail.com', os.getenv('EMAIL_PASSWORD'))
         smtp_server.sendmail(self.message['From'], self.message['To'], self.message.as_string())
         smtp_server.quit()
+        
+        print('Email sent successfully.')
 
