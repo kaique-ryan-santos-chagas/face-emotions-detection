@@ -44,14 +44,13 @@ class DatabaseMethods:
         return user_data.fetchall()
     
 
-    def register_user(self, user_data_json):
+    def register_user(self, user_data):
 
-        user_data = json.loads(user_data_json)
-
-        username = user_data.username
-        useremail = user_data.useremail
+        username = user_data['username']
+        useremail = user_data['useremail']
 
         self.database.execute('INSERT INTO users (name, user_email) VALUES ("'+ username +'", "'+ useremail +'")')
+        self.database.commit()
 
         return 'User registered successfully.'
     

@@ -57,11 +57,10 @@ def store_video():
 def register_user():
 
     user_data = request.json
-
     user = User(user_data)
-    # result = user.register_user()
-
-    return jsonify('result')
+    result = user.register_user()
+   
+    return jsonify(result)
 
 
 

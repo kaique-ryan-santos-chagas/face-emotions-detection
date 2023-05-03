@@ -5,13 +5,10 @@ from src.database.DatabaseMethods import DatabaseMethods
 
 class User:
 
-    def __init__(self, user_data_json):
+    def __init__(self, user_data):
 
-        data = json.loads(user_data_json)
-        print(data)
-
-        # self.user_data = user_data
-        # self.connection = database.connect('face_emotion_detection.db')
+        self.user_data = user_data['user_data']
+        self.connection = database.connect('face_emotion_detection.db')
         
 
     def register_user(self):
