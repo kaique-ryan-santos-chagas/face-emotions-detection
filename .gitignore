@@ -8,3 +8,7 @@ src/database/__pycache__
 zipfiles/
 
 .env
+
+data/
+
+output/

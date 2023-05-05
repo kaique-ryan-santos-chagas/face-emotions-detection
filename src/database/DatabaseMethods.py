@@ -12,13 +12,14 @@ class DatabaseMethods:
     def register_pending_analyse(self, video_data):
 
         filename = video_data['filename']
-        user_email = video_data['user_email']
         age_group = video_data['age_group']
-        gender = video_data['gender']
+        audiovisual_production = video_data['audiovisual_production']
+        user_id = video_data['user_id']
         date_today = date.today()
 
-        self.database.execute('INSERT INTO pending_analyses (file_name, user_email, date_register) VALUES ("'+ filename +'", "'+ user_email +'", "'+ str(date_today) +', '+ age_group +', '+ gender +' ") ')
-        
+        self.database.execute('INSERT INTO pending_analyses (file_name, date_register, age_group, audiovisual_production, user_id) VALUES ("'+ filename +'", "'+ str(date_today) +'", "'+ age_group +'", "'+ audiovisual_production +'", "'+ str(user_id) +'") ')
+        self.database.commit()
+
         return 'Analyse stored successfull.'
 
     

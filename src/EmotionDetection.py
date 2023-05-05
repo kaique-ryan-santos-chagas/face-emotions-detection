@@ -42,7 +42,11 @@ class EmotionDetection:
             video = Video(video_path)
             raw_data = video.analyze(self.detector) 
 
-            video.to_csv(raw_data, analyse_filename + '.csv')
+            data_path = os.path.join(os.getcwd(), 'data\\' + analyse_filename + '.csv')
+
+            video.to_csv(raw_data, data_path)
+
+            os.remove(os.getcwd() + '\\data.csv')
 
             self.database.delete_pending_analyse(analyse_id)
 

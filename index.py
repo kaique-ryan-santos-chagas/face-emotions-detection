@@ -21,7 +21,6 @@ job_thread.start()
 
 app = Flask(__name__)
 
-
 # Application routes 
 
 @app.route('/')
