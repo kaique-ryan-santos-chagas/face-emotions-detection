@@ -1,15 +1,16 @@
+import matplotlib.pyplot as plt
+import pandas as pd
 import os
-import fer
 
-detector = fer.FER(mtcnn=True)
+data_path = os.path.join(os.getcwd(), 'data\\react_8eeaced1f2e0dfc753cc11e63b5abc12.csv')
 
-image = os.path.join(os.getcwd(), 'img\\luna.jpg')
-video = fer.Video(image)
+dataframe = pd.read_csv(data_path)
 
-raw_data = video.analyze(detector)
+for column in list(dataframe.columns):
 
-data_path = os.path.join(os.getcwd(), 'data\\luna.csv')
+    if column.find('box') == 0:
+        del dataframe[column]
 
-video.to_csv(raw_data, data_path)
 
-os.remove(os.getcwd() + '\\data.csv')
+
+
