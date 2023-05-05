@@ -1,3 +1,4 @@
+import json
 
 from datetime import date
 
@@ -11,13 +12,14 @@ class DatabaseMethods:
     def register_pending_analyse(self, video_data):
 
         filename = video_data['filename']
-        user_email = video_data['user_email']
         age_group = video_data['age_group']
-        gender = video_data['gender']
+        audiovisual_production = video_data['audiovisual_production']
+        user_id = video_data['user_id']
         date_today = date.today()
 
-        self.database.execute('INSERT INTO pending_analyses (file_name, user_email, date_register) VALUES ("'+ filename +'", "'+ user_email +'", "'+ str(date_today) +', '+ age_group +', '+ gender +' ") ')
-        
+        self.database.execute('INSERT INTO pending_analyses (file_name, date_register, age_group, audiovisual_production, user_id) VALUES ("'+ filename +'", "'+ str(date_today) +'", "'+ age_group +'", "'+ audiovisual_production +'", "'+ str(user_id) +'") ')
+        self.database.commit()
+
         return 'Analyse stored successfull.'
 
     
@@ -41,4 +43,15 @@ class DatabaseMethods:
         user_data = self.database.execute("SELECT * FROM users WHERE user_email = '" + user_email + "'")
 
         return user_data.fetchall()
+    
+
+    def register_user(self, user_data):
+
+        username = user_data['username']
+        useremail = user_data['useremail']
+
+        self.database.execute('INSERT INTO users (name, user_email) VALUES ("'+ username +'", "'+ useremail +'")')
+        self.database.commit()
+
+        return 'User registered successfully.'
     
