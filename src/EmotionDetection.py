@@ -42,9 +42,9 @@ class EmotionDetection:
             video = Video(video_path)
             raw_data = video.analyze(self.detector)
             
-            data_folder = os.path.join(os.getcwd(), 'data\\')
+            data_folder = os.path.join(os.getcwd(), 'data\\' + analyse_filename)
             
-            os.mkdir(data_folder, analyse_filename) 
+            os.mkdir(data_folder) 
 
             data_path = os.path.join(os.getcwd(), 'data\\' + analyse_filename + '\\' + analyse_filename + '.csv')
 
