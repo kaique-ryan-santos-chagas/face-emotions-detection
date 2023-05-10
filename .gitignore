@@ -1,14 +1,14 @@
-videos/
+videos/*
 
 face_emotion_detection.db
 
 src/__pycache__
 src/database/__pycache__
 
-zipfiles/
+zipfiles/*
 
 .env
 
-data/
+data/*
 
-output/
+output/*
