@@ -1,6 +1,7 @@
 from fer import FER, Video
 
 from src.database.DatabaseMethods import DatabaseMethods
+from src.Reports import Reports
 
 import os
 import zipfile
@@ -22,8 +23,10 @@ class EmotionDetection:
 
             analyse_id = pending_analyse[0][0] 
             analyse_filename = pending_analyse[0][1]
-            analyse_useremail = pending_analyse[0][2]
-            analyse_date_register = pending_analyse[0][3]
+            analyse_date_register = pending_analyse[0][2]
+            analyse_age_group = pending_analyse[0][3]
+            analyse_audiovisual_production = pending_analyse[0][4]
+            analyse_user_id = pending_analyse[0][5]
 
             video_path_folder = os.path.join(os.getcwd(), 'videos')
             
@@ -51,6 +54,12 @@ class EmotionDetection:
             video.to_csv(raw_data, data_path)
 
             os.remove(os.getcwd() + '\\data.csv')
+
+            user_data = self.database.get_user_data_by_id(analyse_user_id)
+            user_email = user_data[0][2]
+
+            report = Reports(user_email, data_folder)
+            report.send_email()
 
             self.database.delete_pending_analyse(analyse_id)
 

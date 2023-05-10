@@ -12,6 +12,7 @@ from jinja2 import Template
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
+from email.mime.application import MIMEApplication
 from dotenv import load_dotenv
 
 class Reports: 
@@ -152,14 +153,17 @@ class Reports:
             with zipfile.ZipFile(zip_path, 'w') as zip:
                 zip.write(video, arcname=self.folder_name + '.mp4')
 
+            video_zip = MIMEApplication(open(zip_path, 'rb').read(), _subtype='zip')
+            video_zip.add_header('Content-Disposition', 'attachment', filename=os.path.basename(zip_path))
+    
             # os.remove(video)
-
 
             self.message['From'] = 'artvibe.ai@gmail.com'
             self.message['To'] = self.useremail
             self.message['Subject'] = 'Your report is ready!'
             self.message.attach(logo_image)
             self.message.attach(emotions_image)
+            self.message.attach(video_zip)
             self.message.attach(MIMEText(html, 'html'))
             
             print('Report is ready.')
