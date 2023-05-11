@@ -46,7 +46,7 @@ class DatabaseMethods:
     
     def get_user_data_by_id(self, user_id):
 
-        user_data = self.database.execute("SELECT * FROM users WHERE id = '" + user_id + "'")
+        user_data = self.database.execute("SELECT * FROM users WHERE id = '" + str(user_id) + "'")
 
         return user_data.fetchall()
     

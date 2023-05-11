@@ -17,6 +17,14 @@ class EmotionDetection:
 
     def start_detection(self):
 
+        folders_path = os.path.join(os.getcwd(), 'zipfiles')
+
+        if not os.path.exists(folders_path):
+
+            os.mkdir('zipfiles')
+            os.mkdir('videos')
+            os.mkdir('data')
+
         pending_analyse = self.database.get_pending_analyse()
 
         if pending_analyse:
@@ -46,8 +54,9 @@ class EmotionDetection:
             raw_data = video.analyze(self.detector)
             
             data_folder = os.path.join(os.getcwd(), 'data\\' + analyse_filename)
-            
-            os.mkdir(data_folder) 
+
+            if not os.path.exists(data_folder):
+                os.mkdir(data_folder) 
 
             data_path = os.path.join(os.getcwd(), 'data\\' + analyse_filename + '\\' + analyse_filename + '.csv')
 
@@ -58,7 +67,7 @@ class EmotionDetection:
             user_data = self.database.get_user_data_by_id(analyse_user_id)
             user_email = user_data[0][2]
 
-            report = Reports(user_email, data_folder)
+            report = Reports(user_email, analyse_filename)
             report.send_email()
 
             self.database.delete_pending_analyse(analyse_id)

@@ -62,7 +62,6 @@ def register_user():
     return jsonify(result)
 
 
-
 # Running the web server Thread.   
 
 if __name__ == '__main__':
