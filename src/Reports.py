@@ -24,6 +24,7 @@ class Reports:
         self.connection = database.connect('face_emotion_detection.db')
         self.top_emotion = ''
         self.folder_name = folder_name
+        self.video_drive_link = ''
 
         load_dotenv()
 
@@ -153,7 +154,7 @@ class Reports:
             print('Report is ready.')
 
 
-    # Implement a function to send video analysed by AI to Google Drive and send the link to user because the video can't be attached.
+    # Implement a function to send video analysed by AI to Google Drive and send the link to user because video can't be attached in the e-mail body.
 
     def send_video_google_drive(self):
 
