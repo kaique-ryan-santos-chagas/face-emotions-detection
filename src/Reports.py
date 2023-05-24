@@ -12,7 +12,6 @@ from jinja2 import Template
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
-from email.mime.application import MIMEApplication
 from dotenv import load_dotenv
 
 class Reports: 
@@ -139,34 +138,32 @@ class Reports:
         user_data = query.get_user_data(self.useremail)
 
         if not user_data:
-            print('User not found.')
-        
+            print('User not found.')        
         else:
 
             username = user_data[0][1]
-
             html = self.template.render(username=username, top_emotion=self.top_emotion)
-            
-            video = os.path.join(os.getcwd(), 'output\\' + self.folder_name + '_output.mp4')
-            zip_path = os.path.join(os.getcwd(), 'output\\' + self.folder_name + '.zip')
-
-            with zipfile.ZipFile(zip_path, 'w') as zip:
-                zip.write(video, arcname=self.folder_name + '.mp4')
-
-            video_zip = MIMEApplication(open(zip_path, 'rb').read(), _subtype='zip')
-            video_zip.add_header('Content-Disposition', 'attachment', filename=os.path.basename(zip_path))
-    
-            # os.remove(video)
-
             self.message['From'] = 'artvibe.ai@gmail.com'
             self.message['To'] = self.useremail
             self.message['Subject'] = 'Your report is ready!'
             self.message.attach(logo_image)
             self.message.attach(emotions_image)
-            self.message.attach(video_zip)
             self.message.attach(MIMEText(html, 'html'))
             
             print('Report is ready.')
+
+
+    # Implement a function to send video analysed by AI to Google Drive and send the link to user because the video can't be attached.
+
+    def send_video_google_drive(self):
+
+        video = os.path.join(os.getcwd(), 'output\\' + self.folder_name + '_output.mp4')
+        zip_path = os.path.join(os.getcwd(), 'output\\' + self.folder_name + '.zip')
+
+        with zipfile.ZipFile(zip_path, 'w') as zip:
+            zip.write(video, arcname=self.folder_name + '.mp4')
+    
+        # os.remove(video)
 
 
     def send_email(self):
