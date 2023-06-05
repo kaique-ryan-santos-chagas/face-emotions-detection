@@ -14,6 +14,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 from dotenv import load_dotenv
 
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+
+
 class Reports: 
 
     def __init__(self, user_email, folder_name):
@@ -158,13 +163,28 @@ class Reports:
 
     def send_video_google_drive(self):
 
+        print('Sending video to Google Drive...')
+
         video = os.path.join(os.getcwd(), 'output\\' + self.folder_name + '_output.mp4')
         zip_path = os.path.join(os.getcwd(), 'output\\' + self.folder_name + '.zip')
 
         with zipfile.ZipFile(zip_path, 'w') as zip:
             zip.write(video, arcname=self.folder_name + '.mp4')
-    
+
         # os.remove(video)
+
+        credentials = service_account.Credentials.from_service_account_file(os.path.join(os.getcwd(), 'credentials.json'))
+        drive_service = build('drive', 'v3', credentials=credentials)
+
+        file_metadata = {
+            'name': self.folder_name
+        }
+
+        media = MediaFileUpload(zip_path, resumable=True)
+
+        file = drive_service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+
+        self.video_drive_link = file.get('webContentLink')
 
 
     def send_email(self):
