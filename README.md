@@ -4,7 +4,7 @@
   <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/00726aba-da72-419f-904a-c566736b7117" />
 </p>
  
-* ### My graduate project that detect human face emotions in audiovisual production. <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/b49efba4-ef09-496a-bd31-a1b0021ad23f" width="30" />
+### My graduate project that detect human face emotions in audiovisual production. <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/b49efba4-ef09-496a-bd31-a1b0021ad23f" width="30" />
 
 ## Examples: detecting emotions in face expressions from react videos.
 
