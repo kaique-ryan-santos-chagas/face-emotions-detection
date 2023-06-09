@@ -10,5 +10,6 @@
 
 <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/7776bc6a-c22e-441d-b542-84b4b0a59732" />
 <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/3437cff7-99d0-4529-87b0-62b31761c7f1" />
+<img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/a55a776b-e7a8-4c52-8ab4-5978cbad2a60" />
 
 
