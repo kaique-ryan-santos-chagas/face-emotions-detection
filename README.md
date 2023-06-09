@@ -81,4 +81,4 @@ Data structure:
 }
 ```
 
-Obs: This route need a zip file containing video to be analysed by AI in API in multipart/form-data format. 
+Obs: This route need a zip file containing video to be analysed by AI in API with multipart/form-data format. 
