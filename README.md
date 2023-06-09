@@ -44,3 +44,14 @@ python drive.py
 EMAIL_PASSWORD={your_google_app_password}
 ```
 
+* Then run web server:
+
+```
+python index.py
+```
+
+Great! Now your environment is ready and you can send request to your server.
+
+Routes avaliable:
+
+* User register: 
