@@ -12,4 +12,5 @@
 <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/3437cff7-99d0-4529-87b0-62b31761c7f1" />
 <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/a55a776b-e7a8-4c52-8ab4-5978cbad2a60" />
 
+## Examples: detecting emotions in face expressions from audiovisual productions.
 
