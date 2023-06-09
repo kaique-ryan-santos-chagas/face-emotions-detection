@@ -6,7 +6,7 @@
   
 * ### My graduate project that detect human face emotions in audiovisual production.
 
-## Examples: detecting emotions in face expressions.
+## Examples: detecting emotions in face expressions from react videos.
 
 <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/7776bc6a-c22e-441d-b542-84b4b0a59732" />
 
