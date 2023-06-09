@@ -32,3 +32,9 @@ pip install -r requirements.txt
 
 * Authenticate with your Google Cloud Developer Account to send video files to Google Drive:
 
+```
+python drive.py
+```
+
+* Remember you need a App Password in your Google Account to send report e-mails. 
+
