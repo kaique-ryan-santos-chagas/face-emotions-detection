@@ -74,9 +74,11 @@ Data structure:
 
 ```
 {
-  "filename": "Filename sent to API", 
+  "filename": "Filename of file sent to API", 
   "user_id": "Your user id in database (Int) ", 
   "age_group": "Your public age in the video",  
   "audiovisual_production": "Your Audiovisual Production name"
 }
 ```
+
+Obs: This route need a zip file containing video to be analysed by AI in API in multipart/form-data format. 
