@@ -6,8 +6,8 @@
   
 ### My graduate project that detect human face emotions in audiovisual production.
 
-## Examples 
+## Examples: detecting emotions in face expressions.
 
-<img src="https://drive.google.com/drive/u/1/folders/1IbzSEVlKJFNtJs7xAXO3lB5PewqByMwh" />
+
 
 
