@@ -15,3 +15,21 @@
 ## Examples: detecting emotions in face expressions from audiovisual productions.
 
 <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/9e53cea5-6087-44cb-8824-ab91839bff8f" />
+
+## How to build the software:
+
+Requirements:
+
+* Python <= 3.10.9 
+
+Steps to config:
+
+* Install dependencies: 
+
+```
+pip install -r requirements.txt
+
+```
+
+
+
