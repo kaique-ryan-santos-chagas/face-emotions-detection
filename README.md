@@ -54,4 +54,29 @@ Great! Now your environment is ready and you can send request to your server.
 
 Routes avaliable:
 
-* User register: 
+* User register: http://127.0.0.1:5000/user/register
+* Send Video to analyse: http://127.0.0.1:5000/send/video
+
+Data structure:
+
+* User register
+
+```
+{
+    "user_data": {
+        "username": "Your username",
+        "useremail": "Your user e-mail"
+    }
+}
+```
+
+* Send video:
+
+```
+{
+  "filename": "Filename sent to API", 
+  "user_id": "Your user id in database (Int) ", 
+  "age_group": "Your public age in the video",  
+  "audiovisual_production": "Your Audiovisual Production name"
+}
+```
