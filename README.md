@@ -28,8 +28,7 @@ Steps to config:
 
 ```
 pip install -r requirements.txt
-
 ```
 
-
+* Authenticate with your Google Cloud Developer Account to send video files to Google Drive:
 
