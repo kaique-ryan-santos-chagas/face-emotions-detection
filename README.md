@@ -8,6 +8,6 @@
 
 ## Examples: detecting emotions in face expressions.
 
-
+<img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/7776bc6a-c22e-441d-b542-84b4b0a59732" />
 
 
