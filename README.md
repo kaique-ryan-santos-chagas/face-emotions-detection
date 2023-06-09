@@ -8,11 +8,7 @@
 
 ## Examples: detecting emotions in face expressions from react videos.
 
-<div style="border-radius: 10px;">
-  <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/7776bc6a-c22e-441d-b542-84b4b0a59732" />
-</div>
+<img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/7776bc6a-c22e-441d-b542-84b4b0a59732" />
+<img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/3437cff7-99d0-4529-87b0-62b31761c7f1" />
 
-<div style="border-radius: 10px;">
-  <img src="https://github.com/kaique-ryan-santos-chagas/face-emotions-detection/assets/59677362/3437cff7-99d0-4529-87b0-62b31761c7f1" />
-</div>
 
