@@ -54,8 +54,8 @@ Great! Now your environment is ready and you can send request to your server.
 
 Routes avaliable:
 
-* User register: http://127.0.0.1:5000/user/register
-* Send Video to analyse: http://127.0.0.1:5000/send/video
+* User register: ```http://127.0.0.1:5000/user/register ```
+* Send Video to analyse: ```http://127.0.0.1:5000/send/video```
 
 Data structure:
 
