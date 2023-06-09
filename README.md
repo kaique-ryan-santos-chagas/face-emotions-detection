@@ -36,5 +36,5 @@ pip install -r requirements.txt
 python drive.py
 ```
 
-* Remember you need a App Password in your Google Account to send report e-mails. 
+* Remember you need a App Password in your Google Account to send report e-mails with Python. 
 
