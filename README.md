@@ -92,4 +92,4 @@ Obs: This route need a zip file containing video to be analysed by AI in API wit
 
 <p></p>
 
-Obs: This reports was sent to user e-mail like result of AI analyse.
+Obs: This reports was sent to user e-mail like result of AI analyze.
