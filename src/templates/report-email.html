@@ -9,20 +9,18 @@
         <center>
 
             <img src="cid:logo" style="width: 700px; height: 400px;">
-
             <h1 style="color: white">Hello, {{ username }}!</h1>
-
             <h1 style="color: white">Your emotions report is ready.</h1>
-
             <h3 style="color: white">The Top Emotion detected is: <h3 style="color:aquamarine; text-transform: uppercase;"> {{ top_emotion }} </h3></h3>
-
             <br>
-
-            <h3 style="color: white">Emotions detected in facial expressions analyse by AI: </h3>
-
+            <h3 style="color: white">Emotions detected in facial expressions analyzed by AI: </h3>
             <br>
-
             <img src="cid:emotions_graphic" style="margin-bottom: 30px;">
+            <br>
+            <h3 style="color: white">The link to download the video analyzed by AI: 
+                <a style="color: white" href="{{ download_link }}">Download video.</a>
+            </h3>
+            <br>
 
         </center>
 
