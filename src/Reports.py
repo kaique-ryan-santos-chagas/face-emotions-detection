@@ -13,10 +13,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 from dotenv import load_dotenv
+from drive import send_google_drive
 
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload
 
 
 class Reports: 
@@ -34,6 +32,7 @@ class Reports:
         load_dotenv()
 
         self.generate_graphics()
+        self.send_video_google_drive()
         self.generate_report()
 
     
@@ -103,9 +102,7 @@ class Reports:
             for column in list(dataframe.columns):
                 
                 if dataframe[column].sum() == max_intensity:
-                    
                     self.top_emotion = column[:-1]
-                    print('The most intensity emotion is: ' + self.top_emotion)
             
             
 
@@ -148,7 +145,7 @@ class Reports:
         else:
 
             username = user_data[0][1]
-            html = self.template.render(username=username, top_emotion=self.top_emotion)
+            html = self.template.render(username=username, top_emotion=self.top_emotion, download_link=self.video_drive_link)
             self.message['From'] = 'artvibe.ai@gmail.com'
             self.message['To'] = self.useremail
             self.message['Subject'] = 'Your report is ready!'
@@ -158,8 +155,6 @@ class Reports:
             
             print('Report is ready.')
 
-
-    # Implement a function to send video analysed by AI to Google Drive and send the link to user because video can't be attached in the e-mail body.
 
     def send_video_google_drive(self):
 
@@ -173,18 +168,9 @@ class Reports:
 
         # os.remove(video)
 
-        credentials = service_account.Credentials.from_service_account_file(os.path.join(os.getcwd(), 'credentials.json'))
-        drive_service = build('drive', 'v3', credentials=credentials)
+        self.video_drive_link = send_google_drive(self.folder_name)
 
-        file_metadata = {
-            'name': self.folder_name
-        }
-
-        media = MediaFileUpload(zip_path, resumable=True)
-
-        file = drive_service.files().create(body=file_metadata, media_body=media, fields='id').execute()
-
-        self.video_drive_link = file.get('webContentLink')
+        print('Video sent sucessfully.')
 
 
     def send_email(self):
