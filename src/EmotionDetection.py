@@ -37,6 +37,7 @@ class EmotionDetection:
             analyse_user_id = pending_analyse[0][5]
 
             video_path_folder = os.path.join(os.getcwd(), 'videos')
+            video_path = ''
             
             files = os.listdir(video_path_folder)
 
