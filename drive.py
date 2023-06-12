@@ -8,12 +8,14 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
+from dotenv import load_dotenv
 
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
 def send_google_drive(filename):
 
     creds = None
+    load_dotenv()
   
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
@@ -31,11 +33,14 @@ def send_google_drive(filename):
             token.write(creds.to_json())
 
     try:
+
+        google_drive_video_folder_id = os.getenv('VIDEO_DRIVE_FOLDER')
         
         service = build('drive', 'v3', credentials=creds)
 
         file_metadata = {
-            'name': filename + '.zip'
+            'name': filename + '.zip',
+            'parents': [google_drive_video_folder_id]
         }
 
         media = MediaFileUpload('output/' + filename + '.zip', mimetype='application/zip')
