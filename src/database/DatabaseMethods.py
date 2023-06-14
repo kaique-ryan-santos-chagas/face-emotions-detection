@@ -1,5 +1,3 @@
-import json
-
 from datetime import date
 
 class DatabaseMethods:
@@ -20,7 +18,7 @@ class DatabaseMethods:
         self.database.execute('INSERT INTO pending_analyses (file_name, date_register, age_group, audiovisual_production, user_id) VALUES ("'+ filename +'", "'+ str(date_today) +'", "'+ age_group +'", "'+ audiovisual_production +'", "'+ str(user_id) +'") ')
         self.database.commit()
 
-        return 'Analyse stored successfull.'
+        return 'Analyse stored successfully.'
 
     
     def delete_pending_analyse(self, pending_analyse_id):
@@ -28,7 +26,7 @@ class DatabaseMethods:
         self.database.execute('DELETE FROM pending_analyses WHERE id = ' + str(pending_analyse_id))
         self.database.commit()
         
-        return 'Analyse deleted successfull.'
+        return 'Analyse deleted successfully.'
 
     
     def get_pending_analyse(self):
