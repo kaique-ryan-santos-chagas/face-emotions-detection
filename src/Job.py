@@ -15,8 +15,6 @@ class Job:
 
         self.detector.start_detection()
 
-    def generate_report(self):
-
-        print('Hello World')
+  
 
 
