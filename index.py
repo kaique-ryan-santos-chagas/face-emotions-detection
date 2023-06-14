@@ -48,7 +48,7 @@ def store_video():
     video_file_zip.save(video_path)
     emotionDetection.store_pending_analyse(analyse_data)
 
-    return jsonify({'message': 'Video stored succesfull.'})
+    return jsonify({'message': 'Video stored succesfully.'})
 
 
 @app.route('/user/register', methods=['POST'])
@@ -59,7 +59,7 @@ def register_user():
     user = User(user_data)
     result = user.register_user()
    
-    return jsonify(result)
+    return jsonify({'message': result})
 
 
 # Running the web server Thread.   
