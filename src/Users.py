@@ -1,5 +1,4 @@
 import sqlite3 as database 
-import json
 
 from src.database.DatabaseMethods import DatabaseMethods
 
